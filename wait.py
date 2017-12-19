@@ -13,7 +13,7 @@ today = datetime.datetime.now()  # 今天
 dsts = [  # 出行日期
     (today + datetime.timedelta(days=1)).strftime("%Y-%m-%d"),  # 明天
     (today + datetime.timedelta(days=2)).strftime("%Y-%m-%d"),  # 后天
-    (today + datetime.timedelta(days=3)).strftime("%Y-%m-%d"),  # 第三天
+    (today + datetime.timedelta(days=10)).strftime("%Y-%m-%d"),  # 10天后
 ]
 tps = [  # 票类型
     "硬卧",
@@ -32,8 +32,8 @@ while 1:
                     target = items.index(tp)
                     if i[target] != "-" and i[target] != "无" and i[target] != "":
                         print(out([dst, ] + i[:6] + [i[target], tp], 12))
-                        speak.say()  # 有票提醒
                         flag = False
+                        break
         except Exception as e:
             print(e)
     if flag:
@@ -41,4 +41,6 @@ while 1:
         time.sleep(sec)
     else:
         # 有票了
+        speak.say()  # 有票提醒
+        input()
         break
